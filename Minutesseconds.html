@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background-color: antiquewhite;
+      }
+      div {
+        width: 50%;
+        height: 90vh;
+      }
+      .seconds {
+        border-right: 5px dotted black;
+        float: left;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .minutes {
+        float: left;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      input {
+        width: 80%;
+        height: 100px;
+        text-align: center;
+        font-size: 80px;
+        font-weight: bold;
+        letter-spacing: 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+      }
+      button {
+        width: 230px;
+        height: 50px;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-top: 10px;
+        border-radius: 5px;
+        background-color: darksalmon;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="seconds">
+      <input type="text" id="secondsInput"  value="SECONDS" />
+    </div>
+    <div class="minutes">
+      <input type="text" id="minutesInput" value="MINUTES" />
+    </div>
+    <button onclick="startTimer()">Click Here!</button>
+
+    <script>
+      var timerId;
+      function startTimer() {
+
+        var secondsInput = document.getElementById("secondsInput");
+        var minutesInput = document.getElementById("minutesInput");
+
+        
+        var seconds = parseInt(secondsInput.value) || 0;
+        var minutes = parseInt(minutesInput.value) || 0;
+        console.log(seconds);
+        console.log(minutes);
+
+        var totalSeconds = minutes * 60 + seconds;
+        console.log(totalSeconds);
+
+        function timerFunction() {
+          if (totalSeconds >= 0) 
+          {
+            var remainingMinutes = Math.floor(totalSeconds / 60);
+            var remainingSeconds = totalSeconds % 60;
+
+            console.log(remainingMinutes);
+            console.log(remainingSeconds);
+
+            secondsInput.value = remainingSeconds;
+            minutesInput.value = remainingMinutes;
+
+             totalSeconds--;
+           } 
+           else 
+           {
+             secondsInput.value = "SECONDS";
+             minutesInput.value = "MINUTES";
+          }
+          timerId = setTimeout(timerFunction, 1000);
+        }
+
+        timerFunction();
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <title>Start Pause </title>
+</head>
+<body> 
+    <input type="text" value="60" id="a">
+    <input type="button" id="b" value="Start" onclick="timer()">
+
+    <script>
+
+         var num=60;
+         var timing;
+        function timer()
+        {
+            var status=document.getElementById("b").value;
+            if(status == "Start")
+            {
+                document.getElementById("b").value="Pause";
+                count()
+            }
+            else 
+            {
+                clearTimeout(timing);
+                document.getElementById("b").value="Start";          
+            }           
+        }
+        
+        function count()
+            {
+                num--;
+                   if(num>=0)
+                   {
+                        document.getElementById("a").value=num;
+                   } 
+                   else
+                   {
+                       clearTimeout(timing); 
+                   }
+       
+                   timing=setTimeout(count,1000);
+            }
+    </script>
+</body>
+</html>
